@@ -16,13 +16,13 @@
 }:
 let
   pname = "backrest";
-  version = "1.10.1";
+  version = "1.11.1";
 
   src = fetchFromGitHub {
     owner = "garethgeorge";
     repo = "backrest";
     tag = "v${version}";
-    hash = "sha256-8WWs7XEVKAc/XmeL+dsw25azfLjUbHKp2MsB6Be14VE=";
+    hash = "sha256-b4axOEXSmbcHrBTCKq2gNTZjYHs85mY159zSBrFksqk=";
   };
 
   frontend = stdenv.mkDerivation (finalAttrs: {
@@ -40,7 +40,7 @@ let
       inherit (finalAttrs) pname version src;
       pnpm = pnpm_9;
       fetcherVersion = 1;
-      hash = "sha256-vJgsU0OXyAKjUJsPOyIY8o3zfNW1BUZ5IL814wmJr3o=";
+      hash = "sha256-i+mirOEvzo4XvlPxGeNx7Em5k97b3vfRnXact1P1SeY=";
     };
 
     buildPhase = ''
@@ -68,7 +68,8 @@ buildGoModule {
       internal/resticinstaller/resticinstaller.go
   '';
 
-  vendorHash = "sha256-cYqK/sddLI38K9bzCpnomcZOYbSRDBOEru4Y26rBLFw=";
+  deleteVendor = true;
+  vendorHash = null;
 
   nativeBuildInputs = [
     gzip
